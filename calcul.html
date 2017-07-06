@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> calculator </title>
+<style>
+  html,body{
+    margin:0;padding:0;
+    width:100%;height:100%;
+  }
+    .b1 {
+      position: relative;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      margin: 2px;
+      text-indent: 0;
+   }
+    .calculator {
+        
+        background:  #C0C0C0;
+        width: 180px;
+        height: 240px;
+        padding: 10px;
+        margin-top: 10px;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-background-origin: padding-box;
+        background-origin: padding-box;
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        -webkit-background-size: 20px 20px;
+        background-size: 20px 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+   }
+    .xern9 {
+        margin: 5px; width:  140px; 
+        height: 30px; 
+	      background:#FFFFFF;
+        text-align: right;
+    }
+    .clear {
+      width: 68px;
+      height: 30px;
+      text-align: center;
+      margin: 2px;
+    }
+    .null {
+      width: 68px;
+      height: 30px;
+      text-align: center;
+      margin: 2px;
+    }
+    .equal {
+      width: 30px;
+      height: 64px;
+      text-align: center;
+      margin: 2px;
+      float: right;
+      margin-right: 10px;
+    }
+    .b2{
+      position: relative;
+      left: 2px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      margin: 2px;
+      
+    }
+  </style>
+
+</head>
+<body>
+  <div class="calculator">
+<form name="calculator">
+    
+    <input id="display" name="display" class="xern9" type="text" value="" onkeyup="return proverka(this);"  onchange="return proverka(this);" > <br>
+    <input id="div" onclick="div" type="button" class="b1"  value="/" >
+    <input id="mult" onclick="button(id)" type="button" class="b1" value="*" >
+    <input id="clr" onclick="clr" type="button" class="clear" value="c" >
+    <br>
+    <input id="1" onclick="button(id)" type="button" class="b1"  value="1" >
+    <input id="2" onclick="button(id)" type="button" class="b1" value="2" >
+    <input id="3" onclick="button(id)" type="button" class="b1" value="3" >
+    <input id="sub" onclick="button(id)" type="button" class="b1" value="-" >
+    <br>
+    <input id="4" onclick="button(id)" type="button" class="b1" value="4" >
+    <input id="5" onclick="button(id)" type="button" class="b1" value="5" >
+    <input id="6" onclick="button(id)" type="button" class="b1" value="6" >
+    <input id="+" onclick="button(id)" type="button" class="b1" value="+" >
+    <br>
+    <input id="7" onclick="button(id)" type="button" class="b2" value="7" >
+    <input id="8" onclick="button(id)" type="button" class="b2" value="8" >
+    <input id="9" onclick="button(id)" type="button" class="b2" value="9" >
+    <input id="eval" onclick="eval" type="button" class="equal" value="=" >
+    <br>
+    <input id="0" onclick="button(id)" type="button" class="null" value="0" >
+    <input id="." onclick="button(id)" type="button" class="b1" value="." >
+    
+    </form>
+
+<script>
+
+function button(id) {
+    var value = document.getElementById(id).value;
+    document.getElementById('display').value += value;
+}
+
+document.getElementById("clr").onclick = function(){
+    document.getElementById("display").value = "";
+}
+
+document.getElementById("div").onclick = function(){
+    document.getElementById("display").value += "/";
+}
+
+
+
+document.getElementById("eval").onclick = function(){
+    document.getElementById("display").value = eval(document.getElementById('display').value);
+}
+
+it("calculate(12 + 34) = 46", function() {
+  assert.equal(calculator.calculate("12 + 34"), 46);
+});
+
+it("calculate(34 - 12) = 22", function() {
+  assert.equal(calculator.calculate("34 - 12"), 22);
+});
+
+it("calculate(2 * 3) = 6", function() {
+  calculator.addMethod("*", function(A, B) {
+    return A * B;
+  });
+  assert.equal(calculator.calculate("2 * 3"), 6);
+});
+
+it("calculate(2 ** 3) = 8", function() {
+  calculator.addMethod("**", function(A, B) {
+    return Math.pow(A, B);
+  });
+});
+
+
+function proverka(input) {
+    input.value = input.value.replace(/[^\d+]/igm, '');
+};
+</script>
+</div>
+</body>
+</html>
