@@ -1,9 +1,14 @@
-var http = require('http');
-var static = require('node-static');
-var file = new static.Server('.');
+// берём Express
+var express = require('express');
 
-http.createServer(function(req, res) {
-  file.serve(req, res);
-}).listen(8080);
+// создаём Express-приложение
+var app = express();
 
-console.log('Server running on port 8080');
+// создаём маршрут для главной страницы
+// http://localhost:8080/
+app.get('/', function(req, res) {
+  res.sendfile('calcul.html');
+});
+
+// запускаем сервер на порту 8080
+app.listen(8080);
